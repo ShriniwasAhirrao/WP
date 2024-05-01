@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Styled Effects</title>
+<style>
+  /* Link Styles */
+  a:link {
+    color: rgb(117, 117, 220); /* Color for links before visited */
+    text-decoration: none;
+  }
+  a:visited {
+    color: rgb(187, 115, 115); /* Color for links after visited */
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Table Styles */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  tr:nth-child(odd) {
+    background-color: rgb(144, 144, 235); /* Color for odd rows */
+  }
+  tr:nth-child(even) {
+    background-color: lightblue; /* Color for even rows */
+  }
+  
+  /* Text Styles */
+  p {
+    color: green; /* Text color */
+    text-transform: uppercase; /* Uppercase text */
+  }
+</style>
+</head>
+<body>
+
+<!-- Links -->
+<h2>Links</h2>
+<ul>
+  <li><a href="#">Link 1</a></li>
+  <li><a href="#">Link 2</a></li>
+  <li><a href="#">Link 3</a></li>
+</ul>
+
+<!-- Table -->
+<h2>Table</h2>
+<table>
+  <tr>
+    <th>Heading 1</th>
+    <th>Heading 2</th>
+    <th>Heading 3</th>
+  </tr>
+  <tr>
+    <td>Row 1</td>
+    <td>Row 1</td>
+    <td>Row 1</td>
+  </tr>
+  <tr>
+    <td>Row 2</td>
+    <td>Row 2</td>
+    <td>Row 2</td>
+  </tr>
+  <tr>
+    <td>Row 3</td>
+    <td>Row 3</td>
+    <td>Row 3</td>
+  </tr>
+</table>
+
+<!-- Text -->
+<h2>Text</h2>
+<p>This is a sample text.</p>
+
+</body>
+</html>

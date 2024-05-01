@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Details Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  form {
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  input[type="text"],
+  select {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+<form id="userForm" onsubmit="return validateForm()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+  <label>Gender:</label>
+  <label><input type="radio" name="gender" value="male" required> Male</label>
+  <label><input type="radio" name="gender" value="female"> Female</label>
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" required>
+  <label for="state">State:</label>
+  <select id="state" name="state" onchange="populateCities()" required>
+    <option value="">Select State</option>
+    <option value="California">California</option>
+    <option value="Texas">Texas</option>
+    <option value="New York">New York</option>
+  </select>
+  <label for="city">City:</label>
+  <select id="city" name="city" required>
+    <option value="">Select City</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+function validateForm() {
+  var name = document.getElementById('name').value;
+  var gender = document.querySelector('input[name="gender"]:checked');
+  var address = document.getElementById('address').value;
+  var state = document.getElementById('state').value;
+  var city = document.getElementById('city').value;
+
+  if (!name || !gender || !address || !state || !city) {
+    alert("All fields are required!");
+    return false;
+  }
+  return true;
+}
+
+function populateCities() {
+  var stateSelect = document.getElementById('state');
+  var citySelect = document.getElementById('city');
+  var state = stateSelect.options[stateSelect.selectedIndex].value;
+  var cities;
+
+  citySelect.innerHTML = '<option value="">Select City</option>';
+
+  switch (state) {
+    case 'California':
+      cities = ['Los Angeles', 'San Francisco', 'San Diego'];
+      break;
+    case 'Texas':
+      cities = ['Houston', 'Dallas', 'Austin'];
+      break;
+    case 'New York':
+      cities = ['New York City', 'Buffalo', 'Albany'];
+      break;
+    default:
+      cities = [];
+  }
+
+  cities.forEach(function(city) {
+    var option = document.createElement('option');
+    option.value = city;
+    option.textContent = city;
+    citySelect.appendChild(option);
+  });
+}
+</script>
+
+</body>
+</html>

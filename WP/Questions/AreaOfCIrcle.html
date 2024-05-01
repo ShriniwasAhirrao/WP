@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>AngularJS Calculate Area of Circle</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="CircleController">
+  <h2>Area of Circle Calculator</h2>
+  <label>Enter Radius:</label>
+  <input type="number" ng-model="radius">
+  <button ng-click="calculateArea()">Calculate Area</button>
+  <p ng-if="area">Area of the circle with radius {{ radius }} is: {{ area | number:2 }} square units</p>
+</div>
+
+<script>
+angular.module('myApp', [])
+  .controller('CircleController', function($scope) {
+    $scope.calculateArea = function() {
+      if ($scope.radius) {
+        $scope.area = Math.PI * Math.pow($scope.radius, 2);
+      } else {
+        $scope.area = null;
+      }
+    };
+  });
+</script>
+
+</body>
+</html>

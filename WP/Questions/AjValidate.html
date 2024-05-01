@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>AngularJS Email and Phone Number Validation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="UserController">
+  <h2>User Information</h2>
+  <form name="userForm" novalidate>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" ng-model="email" required><br>
+    <div ng-show="userForm.email.$dirty && userForm.email.$invalid">
+      <span ng-show="userForm.email.$error.required">Email is required.</span>
+      <span ng-show="userForm.email.$error.email">Invalid email address.</span>
+    </div><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" ng-model="phone" ng-pattern="/^[0-9]{10}$/" required><br>
+    <div ng-show="userForm.phone.$dirty && userForm.phone.$invalid">
+      <span ng-show="userForm.phone.$error.required">Phone number is required.</span>
+      <span ng-show="userForm.phone.$error.pattern">Invalid phone number. Please enter 10 digits.</span>
+    </div><br>
+    <button type="submit" ng-click="submitForm()" ng-disabled="userForm.$invalid">Submit</button>
+  </form>
+</div>
+
+<script>
+angular.module('myApp', [])
+  .controller('UserController', function($scope) {
+    $scope.email = '';
+    $scope.phone = '';
+
+    $scope.submitForm = function() {
+      // Handle form submission logic here
+      console.log('Submitted Email:', $scope.email);
+      console.log('Submitted Phone Number:', $scope.phone);
+    };
+  });
+</script>
+
+</body>
+</html>

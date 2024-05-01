@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>AngularJS Display First Name and Mobile Number</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="UserController">
+  <h2>User Information</h2>
+  <form>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" ng-model="firstName" required><br><br>
+    <label for="mobileNumber">Mobile Number:</label>
+    <input type="tel" id="mobileNumber" ng-model="mobileNumber" required><br><br>
+    <button type="submit" ng-click="submitForm()">Submit</button>
+  </form>
+
+  <p>First Name: {{ firstName }}</p>
+  <p>Mobile Number: {{ mobileNumber }}</p>
+</div>
+
+<script>
+angular.module('myApp', [])
+  .controller('UserController', function($scope) {
+    $scope.firstName = '';
+    $scope.mobileNumber = '';
+
+    $scope.submitForm = function() {
+      // Handle form submission logic here
+      console.log('Submitted First Name:', $scope.firstName);
+      console.log('Submitted Mobile Number:', $scope.mobileNumber);
+    };
+  });
+</script>
+
+</body>
+</html>

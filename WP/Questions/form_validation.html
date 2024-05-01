@@ -1,0 +1,156 @@
+<!-- write a html, css code to design the regisration from that contains textbox for name address email address password telephone along with select your course dropdown list and a submit and reset button make the form validation for all fields both usernae and pasworrd is required and connot be same and leght should be greater then 5 charcter long using java script  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h2 {
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"], input[type="password"], input[type="email"], input[type="tel"], select {
+    width: calc(100% - 12px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  select {
+    appearance: none;
+  }
+  input[type="submit"], input[type="reset"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover, input[type="reset"]:hover {
+    background-color: #45a049;
+  }
+  .error {
+    color: red;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Registration Form</h2>
+  <form id="registrationForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <span id="nameError" class="error"></span>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <span id="emailError" class="error"></span>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" minlength="6" required>
+    <span id="passwordError" class="error"></span>
+
+    <label for="telephone">Telephone:</label>
+    <input type="tel" id="telephone" name="telephone">
+
+    <label for="course">Select Your Course:</label>
+    <select id="course" name="course">
+      <option value="html-css">HTML & CSS</option>
+      <option value="javascript">JavaScript</option>
+      <option value="python">Python</option>
+      <option value="java">Java</option>
+      <option value="php">PHP</option>
+    </select>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
+</div>
+
+<script>
+  function validateForm() {
+    var name = document.getElementById("name").value;
+    var address = document.getElementById("address").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var telephone = document.getElementById("telephone").value;
+    var course = document.getElementById("course").value;
+    var nameError = document.getElementById("nameError");
+    var emailError = document.getElementById("emailError");
+    var passwordError = document.getElementById("passwordError");
+    var isValid = true;
+
+    // Name validation
+    if (name.trim() === "") {
+      nameError.textContent = "Name is required";
+      isValid = false;
+    } else {
+      nameError.textContent = "";
+    }
+
+    // Email validation
+    if (email.trim() === "") {
+      emailError.textContent = "Email is required";
+      isValid = false;
+    } else if (!isValidEmail(email)) {
+      emailError.textContent = "Invalid email address";
+      isValid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+    // Password validation
+    if (password.trim() === "") {
+      passwordError.textContent = "Password is required";
+      isValid = false;
+    } else if (password.length < 6) {
+      passwordError.textContent = "Password must be at least 6 characters";
+      isValid = false;
+    } else {
+      passwordError.textContent = "";
+    }
+
+    // Check if username and password are the same
+    if (name.toLowerCase() === password.toLowerCase()) {
+      passwordError.textContent = "Password cannot be the same as the name";
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  function isValidEmail(email) {
+    // Regular expression to validate email format
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+</script>
+
+</body>
+</html>

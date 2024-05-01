@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volume of Cube Calculator</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  input[type="number"] {
+    padding: 5px;
+    margin: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Volume of Cube Calculator</h2>
+
+<div ng-controller="cubeController">
+  <label for="sideLength">Enter side length of the cube:</label><br>
+  <input type="number" id="sideLength" ng-model="sideLength" placeholder="Side length" required><br>
+  <button ng-click="calculateVolume()">Calculate Volume</button>
+  <div ng-if="volume !== undefined">
+    <p>Volume of the cube with side length {{sideLength}} is: {{volume}}</p>
+  </div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('cubeController', function($scope) {
+    $scope.calculateVolume = function() {
+        if ($scope.sideLength) {
+            $scope.volume = Math.pow($scope.sideLength, 3); // Calculate volume using formula: sideLength^3
+        } else {
+            $scope.volume = undefined;
+        }
+    };
+});
+</script>
+
+</body>
+</html>
